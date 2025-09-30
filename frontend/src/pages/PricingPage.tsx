@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from '../components/ui/Button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/Card'
 import { AuthModal } from '../components/auth/AuthModal'
-import { UserRole } from '../lib/supabase'
 import { CheckIcon } from '@heroicons/react/24/solid'
+
+// Define UserRole locally
+type UserRole = 'basic' | 'pro' | 'exclusive'
 
 export function PricingPage() {
   const navigate = useNavigate()

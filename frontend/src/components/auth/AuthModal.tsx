@@ -3,7 +3,9 @@ import { Modal } from '../ui/Modal'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { useAuth } from '../../contexts/AuthContext'
-import { UserRole } from '../../lib/supabase'
+
+// Define UserRole locally
+type UserRole = 'basic' | 'pro' | 'exclusive'
 
 interface AuthModalProps {
   isOpen: boolean

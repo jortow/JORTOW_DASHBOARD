@@ -1,11 +1,27 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { User, Session } from '@supabase/supabase-js'
-import { supabase, UserProfile, UserRole } from '../lib/supabase'
+import { supabase } from '../lib/supabase'
+
+// Define types locally
+type UserRole = 'basic' | 'pro' | 'exclusive'
+
+interface User {
+  id: string
+  email?: string
+  [key: string]: any
+}
+
+interface UserProfile {
+  id: string
+  email: string
+  role: UserRole
+  created_at: string
+  updated_at: string
+}
 
 interface AuthContextType {
   user: User | null
   profile: UserProfile | null
-  session: Session | null
+  session: any | null
   loading: boolean
   signIn: (email: string, password: string) => Promise<{ error: any }>
   signUp: (email: string, password: string, role: UserRole) => Promise<{ error: any }>
@@ -26,7 +42,7 @@ export function useAuth() {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [profile, setProfile] = useState<UserProfile | null>(null)
-  const [session, setSession] = useState<Session | null>(null)
+  const [session, setSession] = useState<any | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
